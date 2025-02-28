@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nursing Quiz Platform</title>
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #6f9ceb;
+            --accent-color: #ff8c66;
+            --light-color: #f5f7fa;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .topic-selector {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        select {
+            padding: 12px 20px;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            margin-bottom: 15px;
+            background-color: white;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .quiz-container {
+            display: none;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .quiz-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .progress-tracker {
+            background-color: var(--light-color);
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            font-weight: bold;
+        }
+
+        .question {
+            margin-bottom: 30px;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            list-style-type: none;
+        }
+
+        .option {
+            background-color: var(--light-color);
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .option:hover {
+            background-color: #e9f0f9;
+        }
+
+        .option.selected {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .option input {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            display: block;
+            margin: 20px auto;
+        }
+
+        .results {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .score {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .breakdown {
+            margin-bottom: 20px;
+        }
+
+        .restart-btn {
+            background-color: var(--accent-color);
+        }
+
+        .restart-btn:hover {
+            background-color: #ff7043;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .feedback.correct {
+            color: var(--success-color);
+        }
+
+        .feedback.incorrect {
+            color: var(--error-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .quiz-container {
+                padding: 20px;
+            }
+
+            .quiz-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .progress-tracker {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nursing Quiz Platform</h1>
+            <p>Test your knowledge with practice questions on various nursing topics</p>
+        </header>
+
+        <div class="topic-selector">
+            <h2>Select a Nursing Topic</h2>
+            <select id="topic-select">
+                <option value="" disabled selected>Choose a topic...</option>
+                <option value="fundamentals">Fundamentals of Nursing</option>
+                <option value="pharmacology">Pharmacology</option>
+                <option value="medicalsurgical">Medical-Surgical Nursing</option>
+                <option value="pediatrics">Pediatric Nursing</option>
+                <option value="geriatrics">Geriatric Nursing</option>
+                <option value="mentalhealth">Mental Health Nursing</option>
+                <option value="maternalnewborn">Maternal-Newborn Nursing</option>
+                <option value="community">Community Health Nursing</option>
+                <option value="nutrition">Nutrition</option>
+                <option value="ethics">Nursing Ethics & Legal Issues</option>
+                <option value="leadership">Leadership & Management</option>
+                <option value="criticalcare">Critical Care Nursing</option>
+            </select>
+            <button id="start-quiz">Start Quiz</button>
+        </div>
+
+        <div id="quiz-container" class="quiz-container">
+            <div class="quiz-header">
+                <div class="quiz-title" id="quiz-title">Topic Name</div>
+                <div class="progress-tracker">
+                    Score: <span id="current-score">0</span>/<span id="current-question">0</span>
+                </div>
+            </div>
+            <div id="question-container" class="question">
+                <!-- Questions will be inserted here dynamically -->
+            </div>
+            <button id="submit-btn" class="submit-btn">Submit Answer</button>
+        </div>
+
+        <div id="results" class="results">
+            <h2>Quiz Results</h2>
+            <div class="score">
+                <span id="final-score">0</span>/10
+            </div>
+            <div class="breakdown">
+                <p>You answered <span id="correct-answers">0</span> out of 10 questions correctly.</p>
+                <p id="performance-message"></p>
+            </div>
+            <button id="restart-btn" class="restart-btn">Take Another Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        // Question Banks (empty arrays to be filled later)
+        const questionBanks = {
+            fundamentals: [],
+            pharmacology: [],
+            medicalsurgical: [],
+            pediatrics: [],
+            geriatrics: [],
+            mentalhealth: [],
+            maternalnewborn: [],
+            community: [],
+            nutrition: [],
+            ethics: [],
+            leadership: [],
+            criticalcare: []
+        };
+
+        // Sample questions for testing (you can replace or add to these later)
+        // Structure: {question: "", options: [], correctAnswer: 0} (correctAnswer is the index of the correct option)
+        
+        // Fundamentals of Nursing sample questions
+        questionBanks.fundamentals = [
+            {
+                question: "Which nursing action is most appropriate when administering oxygen to a patient?",
+                options: [
+                    "Check oxygen flow rate every 24 hours",
+                    "Check oxygen saturation levels every 4 hours",
+                    "Instruct the patient to breathe normally",
+                    "Turn off oxygen when patient is sleeping"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "Which of the following is the correct sequence for donning personal protective equipment (PPE)?",
+                options: [
+                    "Gown, mask, goggles, gloves",
+                    "Mask, goggles, gown, gloves",
+                    "Gloves, gown, mask, goggles",
+                    "Goggles, mask, gloves, gown"
+                ],
+                correctAnswer: 0
+            },
+            {
+                question: "When changing a sterile dressing, the nurse should:",
+                options: [
+                    "Use the same pair of sterile gloves for removing old dressing and applying new one",
+                    "Clean the wound from outer edges toward the center",
+                    "Clean the wound from center toward the outer edges",
+                    "Apply antibiotic ointment to the entire wound bed regardless of physician orders"
+                ],
+                correctAnswer: 2
+            }
+        ];
+        
+        // Pharmacology sample questions
+        questionBanks.pharmacology = [
+            {
+                question: "Which of the following is a common side effect of ACE inhibitors?",
+                options: [
+                    "Hypokalemia",
+                    "Dry cough",
+                    "Increased heart rate",
+                    "Sedation"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "A patient is taking warfarin (Coumadin). Which food should the nurse instruct the patient to limit in their diet?",
+                options: [
+                    "Citrus fruits",
+                    "Dairy products",
+                    "Leafy green vegetables",
+                    "Lean proteins"
+                ],
+                correctAnswer: 2
+            },
+            {
+                question: "When administering insulin, the nurse should:",
+                options: [
+                    "Always administer it after meals",
+                    "Mix regular and NPH insulin in the same syringe by drawing up NPH first",
+                    "Rotate injection sites within the same anatomical area",
+                    "Massage the injection site vigorously after administration"
+                ],
+                correctAnswer: 2
+            }
+        ];
+
+        // Variables to track quiz state
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedTopic = "";
+        let selectedOption = null;
+
+        // DOM Elements
+        const topicSelect = document.getElementById("topic-select");
+        const startQuizBtn = document.getElementById("start-quiz");
+        const quizContainer = document.getElementById("quiz-container");
+        const questionContainer = document.getElementById("question-container");
+        const quizTitle = document.getElementById("quiz-title");
+        const currentScoreEl = document.getElementById("current-score");
+        const currentQuestionEl = document.getElementById("current-question");
+        const submitBtn = document.getElementById("submit-btn");
+        const resultsContainer = document.getElementById("results");
+        const finalScoreEl = document.getElementById("final-score");
+        const correctAnswersEl = document.getElementById("correct-answers");
+        const performanceMessageEl = document.getElementById("performance-message");
+        const restartBtn = document.getElementById("restart-btn");
+
+        // Event Listeners
+        startQuizBtn.addEventListener("click", startQuiz);
+        submitBtn.addEventListener("click", submitAnswer);
+        restartBtn.addEventListener("click", restartQuiz);
+
+        // Function to start the quiz
+        function startQuiz() {
+            selectedTopic = topicSelect.value;
+            
+            if (!selectedTopic) {
+                alert("Please select a topic first!");
+                return;
+            }
+            
+            // Get topic display name
+            const topicDisplayName = topicSelect.options[topicSelect.selectedIndex].text;
+            
+            // Reset quiz state
+            currentQuestionIndex = 0;
+            score = 0;
+            selectedOption = null;
+            
+            // Update UI
+            quizTitle.textContent = topicDisplayName;
+            currentScoreEl.textContent = "0";
+            currentQuestionEl.textContent = "0";
+            
+            // Check if there are questions available for the selected topic
+            if (questionBanks[selectedTopic].length === 0) {
+                questionContainer.innerHTML = `
+                    <div class="question-text">
+                        No questions available for this topic yet. Please select another topic or check back later.
+                    </div>
+                `;
+                submitBtn.style.display = "none";
+                quizContainer.style.display = "block";
+                return;
+            }
+            
+            // Get 10 random questions or all available if less than 10
+            const availableQuestions = [...questionBanks[selectedTopic]];
+            currentQuestions = [];
+            
+            // Get up to 10 random questions
+            const numQuestions = Math.min(10, availableQuestions.length);
+            for (let i = 0; i < numQuestions; i++) {
+                const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+                currentQuestions.push(availableQuestions[randomIndex]);
+                availableQuestions.splice(randomIndex, 1);
+            }
+            
+            // Display first question
+            displayQuestion();
+            
+            // Show quiz container
+            quizContainer.style.display = "block";
+            resultsContainer.style.display = "none";
+        }
+
+        // Function to display the current question
+        function displayQuestion() {
+            // Update question number display
+            currentQuestionEl.textContent = currentQuestionIndex + 1;
+            
+            // Get current question data
+            const questionData = currentQuestions[currentQuestionIndex];
+            
+            // Clear selected option
+            selectedOption = null;
+            
+            // Create question HTML
+            let questionHTML = `
+                <div class="question-text">${currentQuestionIndex + 1}. ${questionData.question}</div>
+                <ul class="options">
+            `;
+            
+            // Add options
+            questionData.options.forEach((option, index) => {
+                questionHTML += `
+                    <li class="option" data-index="${index}">
+                        <input type="radio" name="option" id="option-${index}" value="${index}">
+                        <label for="option-${index}">${option}</label>
+                    </li>
+                `;
+            });
+            
+            questionHTML += `</ul>`;
+            
+            // Remove any previous feedback
+            const oldFeedback = questionContainer.querySelector('.feedback');
+            if (oldFeedback) {
+                oldFeedback.remove();
+            }
+            
+            // Add question to container
+            questionContainer.innerHTML = questionHTML;
+            
+            // Add event listeners to options
+            const optionElements = questionContainer.querySelectorAll('.option');
+            optionElements.forEach(optionEl => {
+                optionEl.addEventListener('click', () => {
+                    // Remove selected class from all options
+                    optionElements.forEach(el => el.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    optionEl.classList.add('selected');
+                    
+                    // Update selected option
+                    selectedOption = parseInt(optionEl.dataset.index);
+                    
+                    // Select radio button
+                    const radioBtn = optionEl.querySelector('input[type="radio"]');
+                    radioBtn.checked = true;
+                });
+            });
+            
+            // Show submit button
+            submitBtn.style.display = "block";
+        }
+
+        // Function to submit an answer
+        function submitAnswer() {
+            // Check if an option is selected
+            if (selectedOption === null) {
+                alert("Please select an answer!");
+                return;
+            }
+            
+            // Get current question data
+            const questionData = currentQuestions[currentQuestionIndex];
+            
+            // Check if answer is correct
+            const isCorrect = selectedOption === questionData.correctAnswer;
+            
+            // Update score if correct
+            if (isCorrect) {
+                score++;
+                currentScoreEl.textContent = score;
+            }
+            
+            // Show feedback
+            const feedback = document.createElement('div');
+            feedback.classList.add('feedback');
+            feedback.classList.add(isCorrect ? 'correct' : 'incorrect');
+            feedback.textContent = isCorrect ? 
+                '✓ Correct!' : 
+                `✗ Incorrect. The correct answer is: ${questionData.options[questionData.correctAnswer]}`;
+            questionContainer.appendChild(feedback);
+            
+            // Disable options
+            const options = questionContainer.querySelectorAll('.option');
+            options.forEach(option => {
+                option.style.pointerEvents = 'none';
+                
+                // Highlight correct answer
+                if (parseInt(option.dataset.index) === questionData.correctAnswer) {
+                    option.style.backgroundColor = '#2ecc71';
+                    option.style.color = 'white';
+                }
+                // Highlight incorrect selected answer
+                else if (parseInt(option.dataset.index) === selectedOption && !isCorrect) {
+                    option.style.backgroundColor = '#e74c3c';
+                    option.style.color = 'white';
+                }
+            });
+            
+            // Move to next question or show results
+            setTimeout(() => {
+                currentQuestionIndex++;
+                
+                if (currentQuestionIndex < currentQuestions.length) {
+                    displayQuestion();
+                } else {
+                    showResults();
+                }
+            }, 1500);
+            
+            // Hide submit button
+            submitBtn.style.display = "none";
+        }
+
+        // Function to show quiz results
+        function showResults() {
+            // Hide quiz container
+            quizContainer.style.display = "none";
+            
+            // Update results
+            finalScoreEl.textContent = score;
+            correctAnswersEl.textContent = score;
+            
+            // Set performance message
+            if (score === currentQuestions.length) {
+                performanceMessageEl.textContent = "Perfect score! Excellent work!";
+            } else if (score >= currentQuestions.length * 0.8) {
+                performanceMessageEl.textContent = "Great job! You've mastered this topic.";
+            } else if (score >= currentQuestions.length * 0.6) {
+                performanceMessageEl.textContent = "Good effort! Keep studying to improve further.";
+            } else {
+                performanceMessageEl.textContent = "You may need more review on this topic. Keep practicing!";
+            }
+            
+            // Show results container
+            resultsContainer.style.display = "block";
+        }
+
+        // Function to restart quiz selection
+        function restartQuiz() {
+            // Hide results container
+            resultsContainer.style.display = "none";
+            
+            // Reset topic selection
+            topicSelect.value = "";
+            
+            // Show topic selector
+            document.querySelector(".topic-selector").style.display = "block";
+        }
+    </script>
+</body>
+</html>
