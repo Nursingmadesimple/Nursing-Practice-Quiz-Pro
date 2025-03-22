@@ -272,91 +272,644 @@
 
     <script>
         // Question Banks (empty arrays to be filled later)
-        const questionBanks = {
-            fundamentals: [],
-            pharmacology: [],
-            medicalsurgical: [],
-            pediatrics: [],
-            geriatrics: [],
-            mentalhealth: [],
-            maternalnewborn: [],
-            community: [],
-            nutrition: [],
-            ethics: [],
-            leadership: [],
-            criticalcare: []
-        };
+       const questionBanks = {
+    fundamentals: [
+        {
+            question: "Which nursing action is most appropriate when administering oxygen to a patient?",
+            options: [
+                "Check oxygen flow rate every 24 hours",
+                "Check oxygen saturation levels every 4 hours",
+                "Instruct the patient to breathe normally",
+                "Turn off oxygen when patient is sleeping"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "When performing hand hygiene, which is the correct sequence?",
+            options: [
+                "Wet hands, apply soap, rinse, dry, turn off faucet",
+                "Apply soap to dry hands, wet hands, rinse, dry, turn off faucet",
+                "Wet hands, apply soap, lather, rinse, dry, use paper towel to turn off faucet",
+                "Apply sanitizer, rub until dry, rinse with water"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "Which assessment finding requires immediate intervention?",
+            options: [
+                "Blood pressure of 138/88 mmHg",
+                "Respiratory rate of 22 breaths per minute",
+                "Oxygen saturation of 89%",
+                "Heart rate of 92 beats per minute"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "Which intervention is most appropriate when a patient has a pressure ulcer on the sacrum?",
+            options: [
+                "Reposition the patient every 4 hours",
+                "Apply a hydrocolloid dressing and check daily",
+                "Massage the reddened area to stimulate circulation",
+                "Use a pressure-redistributing surface and reposition every 2 hours"
+            ],
+            correctAnswer: 3
+        },
+        {
+            question: "What is the correct method for measuring an oral temperature?",
+            options: [
+                "Place thermometer under the armpit for 3 minutes",
+                "Place thermometer under the tongue for 1 minute",
+                "Place thermometer in the ear for 2 seconds",
+                "Place thermometer on the forehead for 10 seconds"
+            ],
+            correctAnswer: 1
+        }
+    ],
+    
+    pharmacology: [
+        {
+            question: "When administering digoxin, which finding would warrant withholding the medication and notifying the provider?",
+            options: [
+                "Heart rate of 82 beats per minute",
+                "Heart rate of 56 beats per minute",
+                "Blood pressure of 142/86 mmHg",
+                "Respiratory rate of 18 breaths per minute"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "A patient is prescribed enoxaparin (Lovenox) 40 mg subcutaneously daily. Which nursing action is appropriate?",
+            options: [
+                "Administer in the deltoid muscle",
+                "Aspirate before injecting the medication",
+                "Administer in the abdominal fat, 2 inches away from the umbilicus",
+                "Monitor prothrombin time (PT) before each dose"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "Which medication requires monitoring of serum potassium levels?",
+            options: [
+                "Furosemide (Lasix)",
+                "Cephalexin (Keflex)",
+                "Acetaminophen (Tylenol)",
+                "Diphenhydramine (Benadryl)"
+            ],
+            correctAnswer: 0
+        },
+        {
+            question: "When administering insulin, which is the appropriate technique?",
+            options: [
+                "Massage the injection site after administration",
+                "Administer at a 90-degree angle in the deltoid muscle",
+                "Inject cold insulin directly from the refrigerator",
+                "Pinch the skin and inject at a 45-90 degree angle"
+            ],
+            correctAnswer: 3
+        },
+        {
+            question: "A patient is prescribed warfarin (Coumadin). Which food should the nurse instruct the patient to limit in their diet?",
+            options: [
+                "Citrus fruits",
+                "Leafy green vegetables",
+                "Dairy products",
+                "Whole grains"
+            ],
+            correctAnswer: 1
+        }
+    ],
+    
+    medicalsurgical: [
+        {
+            question: "A patient with COPD has an oxygen saturation of 88%. What is the most appropriate initial oxygen therapy?",
+            options: [
+                "High-flow oxygen at 15 L/min via non-rebreather mask",
+                "Low-flow oxygen at 2 L/min via nasal cannula",
+                "Initiate BiPAP therapy immediately",
+                "Intubation and mechanical ventilation"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which assessment finding would indicate a potential complication after thyroidectomy?",
+            options: [
+                "Mild pain at the incision site",
+                "Hoarseness and voice changes",
+                "Slight edema at the surgical site",
+                "Elevated body temperature of 99.2°F"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "A patient has a closed chest drainage system after thoracic surgery. What indicates proper functioning of the system?",
+            options: [
+                "Absence of fluctuation in the water seal chamber",
+                "Continuous bubbling in the water seal chamber",
+                "Fluctuation in the water seal chamber with respiration",
+                "Rapid bubbling in the suction control chamber"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "Which finding in a post-operative patient requires immediate intervention?",
+            options: [
+                "Incisional pain rated 4/10 with prescribed analgesics",
+                "Urine output of 30 mL in the last hour",
+                "Temperature of 100.2°F within 24 hours after surgery",
+                "Clear drainage on the surgical dressing"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "A patient with heart failure is experiencing acute pulmonary edema. Which position would best facilitate breathing?",
+            options: [
+                "Supine with the head of bed flat",
+                "High Fowler's position with arms supported on pillows",
+                "Left lateral recumbent position",
+                "Prone position"
+            ],
+            correctAnswer: 1
+        }
+    ],
+    
+    pediatrics: [
+        {
+            question: "When assessing a 2-year-old child, which vital sign parameter is abnormal?",
+            options: [
+                "Heart rate of 110 beats per minute",
+                "Respiratory rate of 28 breaths per minute",
+                "Blood pressure of 115/75 mmHg",
+                "Temperature of 99.0°F"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "Which intervention is most appropriate for a 4-year-old child with fever?",
+            options: [
+                "Apply ice packs to axillary regions",
+                "Administer acetaminophen based on weight",
+                "Encourage drinking cold fluids only",
+                "Place in a cool bath for 30 minutes"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "When administering oral medication to a toddler, which approach is best?",
+            options: [
+                "Mix medication with a full bottle of formula",
+                "Place medication in a medicine cup and allow self-administration",
+                "Use a needleless syringe and direct medication to the side of the mouth",
+                "Add medication to a teaspoon of ice cream"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "A 6-month-old infant is being assessed for developmental milestones. Which finding is concerning?",
+            options: [
+                "Cannot yet crawl",
+                "Does not respond to own name",
+                "Has not started eating solid foods",
+                "Cannot yet sit without support"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which immunization should a 12-month-old receive?",
+            options: [
+                "HPV vaccine",
+                "Meningococcal vaccine",
+                "MMR vaccine",
+                "Tdap vaccine"
+            ],
+            correctAnswer: 2
+        }
+    ],
+    
+    geriatrics: [
+        {
+            question: "Which assessment finding in an elderly patient requires immediate intervention?",
+            options: [
+                "Blood pressure of 140/90 mmHg",
+                "Heart rate of 60 beats per minute",
+                "New onset confusion",
+                "Mild ankle edema"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "When caring for an elderly patient with dementia who is refusing to bathe, which approach is most appropriate?",
+            options: [
+                "Firmly insist that bathing is necessary for health",
+                "Offer choices and create a calm, pleasant environment",
+                "Ask family members to convince the patient",
+                "Administer prescribed sedation before bathing"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which medication carries the highest risk for adverse effects in elderly patients?",
+            options: [
+                "Diphenhydramine (Benadryl)",
+                "Acetaminophen (Tylenol)",
+                "Docusate sodium (Colace)",
+                "Pantoprazole (Protonix)"
+            ],
+            correctAnswer: 0
+        },
+        {
+            question: "Which intervention is most important in preventing falls in elderly patients?",
+            options: [
+                "Administering sedatives at night",
+                "Maintaining bed rest",
+                "Removing environmental hazards and providing assistive devices",
+                "Using restraints when unattended"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "An 80-year-old patient has a pressure ulcer on the heel. Which factor most likely contributed to this?",
+            options: [
+                "High protein diet",
+                "Decreased peripheral circulation",
+                "Frequent repositioning",
+                "Hydration status"
+            ],
+            correctAnswer: 1
+        }
+    ],
+    
+    mentalhealth: [
+        {
+            question: "A patient diagnosed with major depressive disorder has been prescribed an SSRI. Which statement by the patient indicates understanding of the medication?",
+            options: [
+                "\"I should feel better within 1-2 days of starting this medication.\"",
+                "\"I can stop taking this medication once I feel better.\"",
+                "\"This medication may take several weeks to reach full effectiveness.\"",
+                "\"I should avoid all social activities while taking this medication.\""
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "Which intervention is most appropriate for a patient experiencing auditory hallucinations?",
+            options: [
+                "Ignore the patient when they respond to the voices",
+                "Tell the patient that the voices aren't real and to ignore them",
+                "Acknowledge the patient's experience and reorient to reality",
+                "Isolate the patient to prevent disturbing others"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "A patient with bipolar disorder is exhibiting signs of mania. Which assessment finding would be expected?",
+            options: [
+                "Hypersomnia",
+                "Decreased appetite",
+                "Slowed speech",
+                "Grandiose thinking"
+            ],
+            correctAnswer: 3
+        },
+        {
+            question: "Which statement indicates a high risk for suicide?",
+            options: [
+                "\"Sometimes I feel like life isn't worth living.\"",
+                "\"I've given away my prized possessions and written goodbye letters.\"",
+                "\"I'm feeling sad about my diagnosis.\"",
+                "\"I'm worried about my upcoming surgery.\""
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which nursing intervention is most appropriate for a patient with anxiety?",
+            options: [
+                "Encourage the patient to talk about fears in a large group setting",
+                "Provide a stimulating environment to distract from anxious thoughts",
+                "Teach deep breathing and progressive muscle relaxation techniques",
+                "Discourage discussion of anxiety-provoking situations"
+            ],
+            correctAnswer: 2
+        }
+    ],
+    
+    maternalnewborn: [
+        {
+            question: "Which finding during the first stage of labor requires immediate notification of the provider?",
+            options: [
+                "Bloody show",
+                "Fetal heart rate of 110-160 beats per minute",
+                "Late decelerations on the fetal monitor",
+                "Contractions occurring every 3-5 minutes"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "A newborn is being assessed 1 hour after birth. Which finding is normal?",
+            options: [
+                "Respiratory rate of 80 breaths per minute",
+                "Acrocyanosis (bluish color of hands and feet)",
+                "Persistent central cyanosis",
+                "Absence of the Moro reflex"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which sign in a postpartum patient indicates potential hemorrhage?",
+            options: [
+                "Lochia rubra on the first day postpartum",
+                "Fundus firm and at the level of the umbilicus",
+                "Heart rate of 120 beats per minute with hypotension",
+                "Passing small clots during the first 24 hours"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "A pregnant woman at 30 weeks gestation reports a headache, visual disturbances, and epigastric pain. Which condition should the nurse suspect?",
+            options: [
+                "Normal pregnancy symptoms",
+                "Gestational diabetes",
+                "Preeclampsia",
+                "Placenta previa"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "Which instruction is appropriate for a breastfeeding mother with sore nipples?",
+            options: [
+                "Limit feeding time to 5 minutes per breast",
+                "Apply soap to nipples after each feeding",
+                "Ensure proper latch and positioning of the infant",
+                "Express milk and bottle feed until nipples heal"
+            ],
+            correctAnswer: 2
+        }
+    ],
+    
+    community: [
+        {
+            question: "Which intervention is most appropriate when providing health education to a community with low literacy levels?",
+            options: [
+                "Distribute detailed written pamphlets",
+                "Use technical medical terminology to ensure accuracy",
+                "Use visual aids and simple language",
+                "Focus on statistical data presentation"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "When conducting a home visit for an elderly patient, which assessment should receive priority?",
+            options: [
+                "Family photos and memorabilia",
+                "Home safety and fall risks",
+                "Quality of furniture and decorations",
+                "Entertainment options available"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which approach is most effective in promoting childhood immunizations in a community with low vaccination rates?",
+            options: [
+                "Mandating vaccinations for school entry without exemptions",
+                "Providing culturally sensitive education addressing specific concerns",
+                "Implementing financial penalties for non-compliance",
+                "Limiting access to public services for unvaccinated children"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "A community health nurse is planning a screening program for hypertension. Which location would reach the most underserved individuals?",
+            options: [
+                "Private medical center",
+                "Community health fair at a shopping mall",
+                "Local fitness center",
+                "High-end grocery store"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which intervention is most effective for reducing the spread of communicable diseases in a community?",
+            options: [
+                "Distributing antibiotics to all community members",
+                "Conducting health education on hand hygiene and vaccination",
+                "Isolating all community members with any illness",
+                "Implementing mandatory daily health checks"
+            ],
+            correctAnswer: 1
+        }
+    ],
+    
+    nutrition: [
+        {
+            question: "Which dietary recommendation is appropriate for a patient with heart failure?",
+            options: [
+                "Increase sodium intake to maintain blood pressure",
+                "Restrict fluid intake to 1500-2000 mL per day",
+                "Consume high-protein, high-calorie foods",
+                "Eat large meals three times daily"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "A patient with type 2 diabetes is learning about carbohydrate counting. Which statement indicates understanding?",
+            options: [
+                "\"I should avoid all carbohydrates completely.\"",
+                "\"One carbohydrate serving is equal to 15 grams of carbohydrates.\"",
+                "\"I should only eat carbohydrates in the morning.\"",
+                "\"Protein foods contain the highest amount of carbohydrates.\""
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which food is contraindicated for a patient on a low-potassium diet?",
+            options: [
+                "Apple",
+                "White bread",
+                "Banana",
+                "Rice"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "A patient with dysphagia would benefit most from which diet modification?",
+            options: [
+                "Low-sodium diet",
+                "Clear liquid diet",
+                "High-fiber diet",
+                "Thickened liquids and soft foods"
+            ],
+            correctAnswer: 3
+        },
+        {
+            question: "Which nutritional intervention is most appropriate for a patient with pressure ulcers?",
+            options: [
+                "Calorie restriction to prevent obesity",
+                "High protein diet with adequate vitamins and minerals",
+                "Low-fat, high-carbohydrate diet",
+                "Fluid restriction to reduce edema"
+            ],
+            correctAnswer: 1
+        }
+    ],
+    
+    ethics: [
+        {
+            question: "A patient refuses a blood transfusion due to religious beliefs, despite medical necessity. What is the nurse's most appropriate action?",
+            options: [
+                "Administer the transfusion as it is medically necessary",
+                "Respect the patient's decision if they are competent, and document refusal",
+                "Contact family members to override the patient's decision",
+                "Attempt to change the patient's mind by discussing medical consequences"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which situation represents a breach of patient confidentiality?",
+            options: [
+                "Discussing a patient's condition with the healthcare team",
+                "Sharing patient information with another patient's family",
+                "Documenting care in the patient's medical record",
+                "Reporting suspected abuse to proper authorities"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "A nurse disagrees with a physician's treatment plan. What is the most appropriate initial action?",
+            options: [
+                "Follow the physician's orders despite concerns",
+                "Discuss concerns with the physician privately",
+                "Contact the nursing supervisor immediately",
+                "Document objections in the patient's chart"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which principle is being applied when a nurse ensures a patient has all information needed to make an informed decision about treatment?",
+            options: [
+                "Beneficence",
+                "Justice",
+                "Autonomy",
+                "Nonmaleficence"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "A family member asks the nurse not to tell the patient about their terminal diagnosis. What is the most ethical response?",
+            options: [
+                "Agree to withhold the information as requested",
+                "Explain that honesty is important while acknowledging family concerns",
+                "Tell the family member that they are being unreasonable",
+                "Immediately inform the patient regardless of family wishes"
+            ],
+            correctAnswer: 1
+        }
+    ],
+    
+    leadership: [
+        {
+            question: "A nurse observes a colleague making a medication error. What is the most appropriate initial action?",
+            options: [
+                "Report the colleague to the nursing board",
+                "Speak directly with the colleague and ensure the error is reported",
+                "Ignore the situation if no harm came to the patient",
+                "Tell other staff members to watch that colleague carefully"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which leadership style involves shared decision-making with staff?",
+            options: [
+                "Autocratic",
+                "Laissez-faire",
+                "Democratic",
+                "Bureaucratic"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "A charge nurse is making patient assignments. Which factor is most important to consider?",
+            options: [
+                "Patient preferences for specific nurses",
+                "Patient acuity and nurse competence",
+                "Nurse preferences for specific patients",
+                "Equal distribution of patient numbers among staff"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which approach is most effective for resolving conflict between nursing staff members?",
+            options: [
+                "Ignoring the conflict and allowing staff to resolve it themselves",
+                "Transferring one of the involved staff members to another unit",
+                "Having a facilitated discussion to identify issues and solutions",
+                "Establishing strict rules about professional behavior"
+            ],
+            correctAnswer: 2
+        },
+        {
+            question: "When implementing a change in nursing practice, which approach is most effective?",
+            options: [
+                "Mandate the change with clear consequences for non-compliance",
+                "Involve staff in planning and provide education about the change",
+                "Implement the change quickly without advance notice",
+                "Allow each nurse to decide whether to adopt the change"
+            ],
+            correctAnswer: 1
+        }
+    ],
+    
+    criticalcare: [
+        {
+            question: "A patient in the ICU has a pulmonary artery catheter. Which reading would cause the nurse the most concern?",
+            options: [
+                "Cardiac output of 5.5 L/min",
+                "Pulmonary artery pressure of 25/10 mmHg",
+                "Central venous pressure of 2 mmHg",
+                "Pulmonary capillary wedge pressure of 25 mmHg"
+            ],
+            correctAnswer: 3
+        },
+        {
+            question: "Which intervention has the highest priority for a patient with anaphylactic shock?",
+            options: [
+                "Administering diphenhydramine",
+                "Administering epinephrine",
+                "Starting IV fluids",
+                "Applying oxygen via nasal cannula"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "A patient on a mechanical ventilator suddenly has high peak airway pressures and decreased oxygen saturation. Which action should the nurse take first?",
+            options: [
+                "Increase the FiO2 to 100%",
+                "Assess for endotracheal tube displacement or obstruction",
+                "Administer a sedative",
+                "Increase the PEEP setting"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "Which ECG rhythm would indicate the need for immediate defibrillation?",
+            options: [
+                "Sinus bradycardia",
+                "Ventricular fibrillation",
+                "First-degree heart block",
+                "Atrial fibrillation"
+            ],
+            correctAnswer: 1
+        },
+        {
+            question: "A patient with diabetic ketoacidosis has the following arterial blood gas results: pH 7.15, PaCO2 32 mmHg, HCO3 12 mEq/L. Which interpretation is correct?",
+            options: [
+                "Respiratory acidosis",
+                "Metabolic alkalosis",
+                "Metabolic acidosis",
+                "Respiratory alkalosis"
+            ],
+            correctAnswer: 2
+        }
+    ]
+};
 
-        // Sample questions for testing (you can replace or add to these later)
-        // Structure: {question: "", options: [], correctAnswer: 0} (correctAnswer is the index of the correct option)
-        
-        // Fundamentals of Nursing sample questions
-        questionBanks.fundamentals = [
-            {
-                question: "Which nursing action is most appropriate when administering oxygen to a patient?",
-                options: [
-                    "Check oxygen flow rate every 24 hours",
-                    "Check oxygen saturation levels every 4 hours",
-                    "Instruct the patient to breathe normally",
-                    "Turn off oxygen when patient is sleeping"
-                ],
-                correctAnswer: 1
-            },
-            {
-                question: "Which of the following is the correct sequence for donning personal protective equipment (PPE)?",
-                options: [
-                    "Gown, mask, goggles, gloves",
-                    "Mask, goggles, gown, gloves",
-                    "Gloves, gown, mask, goggles",
-                    "Goggles, mask, gloves, gown"
-                ],
-                correctAnswer: 0
-            },
-            {
-                question: "When changing a sterile dressing, the nurse should:",
-                options: [
-                    "Use the same pair of sterile gloves for removing old dressing and applying new one",
-                    "Clean the wound from outer edges toward the center",
-                    "Clean the wound from center toward the outer edges",
-                    "Apply antibiotic ointment to the entire wound bed regardless of physician orders"
-                ],
-                correctAnswer: 2
-            }
-        ];
-        
-        // Pharmacology sample questions
-        questionBanks.pharmacology = [
-            {
-                question: "Which of the following is a common side effect of ACE inhibitors?",
-                options: [
-                    "Hypokalemia",
-                    "Dry cough",
-                    "Increased heart rate",
-                    "Sedation"
-                ],
-                correctAnswer: 1
-            },
-            {
-                question: "A patient is taking warfarin (Coumadin). Which food should the nurse instruct the patient to limit in their diet?",
-                options: [
-                    "Citrus fruits",
-                    "Dairy products",
-                    "Leafy green vegetables",
-                    "Lean proteins"
-                ],
-                correctAnswer: 2
-            },
-            {
-                question: "When administering insulin, the nurse should:",
-                options: [
-                    "Always administer it after meals",
-                    "Mix regular and NPH insulin in the same syringe by drawing up NPH first",
-                    "Rotate injection sites within the same anatomical area",
-                    "Massage the injection site vigorously after administration"
-                ],
-                correctAnswer: 2
-            }
-        ];
 
         // Variables to track quiz state
         let currentQuestions = [];
